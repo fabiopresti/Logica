@@ -1,0 +1,45 @@
+\babel@toc {italian}{}
+\babel@toc {italian}{}
+\contentsline {section}{\numberline {1}La logica aristotelica}{2}{}%
+\contentsline {subsection}{\numberline {1.1}I concetti e le proposizioni}{2}{}%
+\contentsline {subsection}{\numberline {1.2}I sillogismi}{2}{}%
+\contentsline {subsection}{\numberline {1.3}I principi del ragionamento}{3}{}%
+\contentsline {section}{\numberline {2}Gli Elementi di Euclide}{3}{}%
+\contentsline {section}{\numberline {3}La logica stoica}{4}{}%
+\contentsline {subsection}{\numberline {3.1}I paradossi o antinomie}{5}{}%
+\contentsline {section}{\numberline {4}La logica medievale}{5}{}%
+\contentsline {subsection}{\numberline {4.1}La teoria dei quantificatori}{5}{}%
+\contentsline {subsection}{\numberline {4.2}La propriet\`a distributiva della negazione nei connettivi et e vel}{6}{}%
+\contentsline {subsection}{\numberline {4.3}Il teorema di Pseudo-Scoto: ex falso quodlibet}{6}{}%
+\contentsline {subsection}{\numberline {4.4}Il tentativo di Raimondo Lullo}{6}{}%
+\contentsline {section}{\numberline {5}La logica nel Seicento}{7}{}%
+\contentsline {subsection}{\numberline {5.1}Leibniz e il calcolo logico}{7}{}%
+\contentsline {section}{\numberline {6}La logica booleana}{7}{}%
+\contentsline {subsection}{\numberline {6.1}I \textit {primi princ\IeC {\`\i }pi}}{8}{}%
+\contentsline {subsection}{\numberline {6.2}Le proposizioni}{8}{}%
+\contentsline {subsection}{\numberline {6.3}Proposizioni e sillogismi categorici}{8}{}%
+\contentsline {subsection}{\numberline {6.4}Proposizioni e sillogismi ipotetici}{9}{}%
+\contentsline {subsubsection}{\numberline {6.4.1}Verit\`a di proposizioni ipotetiche}{9}{}%
+\contentsline {subsubsection}{\numberline {6.4.2}I sillogismi ipotetici}{9}{}%
+\contentsline {subsection}{\numberline {6.5}Le funzioni elettive}{10}{}%
+\contentsline {section}{\numberline {7}Giuseppe Peano}{11}{}%
+\contentsline {section}{\numberline {8}Georg Cantor}{12}{}%
+\contentsline {section}{\numberline {9}Gottlob Frege}{12}{}%
+\contentsline {subsection}{\numberline {9.1}\textit {Ideografia} (1879)}{13}{}%
+\contentsline {subsection}{\numberline {9.2}\textit {I fondamenti dell'aritmetica} (1884)}{13}{}%
+\contentsline {subsection}{\numberline {9.3}\textit {Grundgesetze der arithmetik} (1893 1\textdegree \ volume - 1903 2\textdegree \ volume)}{15}{}%
+\contentsline {section}{\numberline {10}La crisi dei fondamenti}{16}{}%
+\contentsline {subsection}{\numberline {10.1}Le risposte alla crisi dei fondamenti}{17}{}%
+\contentsline {section}{\numberline {11}I teoremi di incompletezza di G\"{o}del}{18}{}%
+\contentsline {subsection}{\numberline {11.1}La g\"{o}delizzazione}{18}{}%
+\contentsline {subsection}{\numberline {11.2}"Io non posso essere dimostrato": costruire l'enunciato $\gamma $}{19}{}%
+\contentsline {subsubsection}{\numberline {11.2.1}La funzione $Dim_{AT}(m,n)$}{20}{}%
+\contentsline {subsubsection}{\numberline {11.2.2}La funzione $Sost(m,n,p)$}{20}{}%
+\contentsline {subsubsection}{\numberline {11.2.3}$\gamma $, l'autoreferenza}{21}{}%
+\contentsline {subsection}{\numberline {11.3}La dimostrazione}{21}{}%
+\contentsline {subsubsection}{\numberline {11.3.1}L'$\omega $-coerenza}{22}{}%
+\contentsline {subsubsection}{\numberline {11.3.2}"abbastanza potente" e funzioni ricorsive}{22}{}%
+\contentsline {subsubsection}{\numberline {11.3.3}G1a}{22}{}%
+\contentsline {subsubsection}{\numberline {11.3.4}G1b}{23}{}%
+\contentsline {subsection}{\numberline {11.4}Il secondo teorema di Incompletezza: G2}{23}{}%
+\contentsline {section}{\numberline {12}Conclusione}{24}{}%

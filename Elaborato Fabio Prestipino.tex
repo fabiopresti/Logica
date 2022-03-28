@@ -1,0 +1,486 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[a4paper,top=2cm,bottom=3cm,left=3.2cm,right=3.2cm,bindingoffset=0mm]{geometry}
+\usepackage{graphicx,amsmath,amscd,amssymb,verbatim}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{epigraph}
+\usepackage{indentfirst}
+\usepackage{lipsum}
+\usepackage{kantlipsum}
+\parindent=20pt
+\usepackage{makeidx}
+\frenchspacing
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{esercizio}{Esercizio}[section]
+\newenvironment{proof}[1][Dimostrazione]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}\medskip\medskip}
+\newenvironment{sistema}%
+{\left\lbrace\begin{array}{@{}l@{}}}%
+{\end{array}\right.}
+\newcommand{\eqnsection}{
+   \renewcommand{\theequation}{{\thesection.\arabic{equation}}}
+   \makeatletter
+   \csname @addtoreset\endcsname{equation}{section}
+   \makeatother}
+\eqnsection
+\makeindex
+\begin{document}
+\title{La logica da Aaristotele a G\"{o}del}
+\date{31 maggio 2021}
+\author{Fabio Prestipino}
+\maketitle
+\thispagestyle{empty}
+\epigraph{Una volta un monaco chiese al maestro Zh\`{a}ozh\={o}u: 'Un cane possiede la natura di Buddha?' Zh\`{a}ozh\={o}u rispose: ' Mu!'}{1° g\={o}ng'\`{a}n del W\`{u}m\'{e}n gu\={a}n}
+\begin{abstract}
+Ognuno dentro di se possiede la certezza (o la speranza) che tutto ciò che ci circonda sia permeato da una razionalità intrinseca, che da sempre ha meravigliato e fatto interrogare. Probabilmente questo è il mistero più profondo, su cui l'ingegno umano sarà destinato a fantasticare per l'eternità. La Logica, nel senso più ampio, può essere concepita come "lo studio della Ragione". Questa definizione, tanto generale quanto suggestiva, sicuramente non si addice ad un elaborato di questo genere, bisogna dunque restringere il campo, adottando una nuova definizione: "la logica è lo studio del ragionamento umano" (d'altronde chi ci garantisce che la razionalità del mondo non sia solo una costruzione umana?). L'uomo tuttavia possiede un complesso strumento, il cervello, dalle potenzialità enormi tutt'oggi poco comprese, grazie al quale riesce a compiere ragionamenti districandosi fra le contraddizioni ed ambiguità del linguaggio  naturale. La nuova definizione sarebbe dunque sempre troppo ampia, includendo discipline come la filosofia del linguaggio e la psicologia che non vogliono essere oggetto di questa trattazione. Si può dire che la logica che presa in esame sarà quella "che studia le forme del ragionamento umano" (e dunque il ragionamento formale), seguendo con una particolare attenzione la branca della logica che intraprese lo studio delle forme con cui si "ragiona" la matematica. Ciò che si tenterà di fare sarà dunque di delineare l'evoluzione storica, toccando i punti reputati più decisivi, che ha portato dallo studio delle forme più basiche del ragionamento umano fino al tentativo di creare un sistema che racchiuda tutto il ragionamento umano in formule. Si concluderà infine con il teorema che ne sancì il fallimento e che aprì la strada alla più moderna ricerca in questo ambito. 
+\end{abstract}
+\newpage
+\section{La logica aristotelica}
+La storia della logica viene fatta cominciare convenzionalmente con Aristotele (383 a.C. - 322 a.C.) che nell'\textit{Organon} getta le basi di questa disciplina. \'{E} interessante notare che la logica per Aristotele non rientri fra le discipline scientifiche, essa infatti non studia un particolare aspetto della realtà ma le strutture stesse del ragionamento, proprie di tutte le scienze. Questo titolo infatti può essere tradotto come "strumento" ed indica la funzione propedeutica della logica per il sapere in generale.
+\subsection{I concetti e le proposizioni}
+La logica aristotelica è basata sui \textbf{concetti o categorie}. Questi possono essere distinti dal più al meno universale in base alla loro estensione, cioè a quante specie contengono e da quanti generi sono contenute (il concetto di poligono contiene la specie dei quadrilateri). Essi possono assumere funzione di soggetto (ciò di cui si sta parlando) o di predicato (una proprietà del soggetto). La logica viene sin da subito limitata agli enunciati dichiarativi (o apofantici), detti \textbf{proposizioni}, ai quali si possono attribuire dei giudizi, passo fondamentale per evitare molte delle ambiguità del linguaggio naturale. Le proposizioni sono distinguibili qualitativamente e quantitativamente. Possono essere: universali affermative ("Tutti gli uomini sono mortali"), universali negative ("Nessun uomo è mortale"), particolari affermative ("Qualche uomo è mortale") o particolari negative ("Qualche uomo non è mortale"). In epoca medievale si formulerà il celebre quadrato AEIO (dalle vocali delle parole latine \textbf{A}df\textbf{I}rmo e n\textbf{E}g\textbf{O}), uno schema che mostra i rapporti (contrari, contraddittori, subalterni e subcontrari) fra questi tipi di proposizioni.
+\subsection{I sillogismi}
+Il ragionamento però non è costituito semplicemente da affermazioni o negazioni di proposizioni; il vero ragionamento è fatto da rapporti e nessi fra proposizioni semplici. Il \textbf{sillogismo} è il ragionamento per eccellenza, ovvero, con le parole dello stagirita:
+\begin{quotation}
+"Un discorso in cui poste alcune cose, segue necessariamente qualcos'altro, per il semplice fatto che quelle sono state poste".
+\end{quotation}
+Un classico esempio di sillogismo è: Tutti gli umani sono mortali. Socrate è umano. Socrate è mortale. I sillogismi sono formati da due premesse, una maggiore (Tutti gli umani sono mortali) ed una minore (Socrate è umano), e da una conclusione (Socrate è mortale). A loro volta queste parti sono formate da un termine maggiore (i mortali), uno medio (gli umani) ed uno minore (Socrate). A seconda della funzione del termine medio, Aristotele distingue 3 sillogismi, un quarto verrà aggiunto successivamente: 
+\begin{enumerate}
+	\item Il termine medio è soggetto della premessa maggiore e predicato della minore (\textit{sub-prae})
+	\item Il termine medio è predicato di entrambe le premesse (\textit{prae-prae})
+	\item Il termine medio è soggetto di entrambe le premesse (\textit{sub-sub})
+	\item Il termine medio è predicato della premessa maggiore e soggetto della premessa minore (\textit{prae-sub})
+\end{enumerate}
+Ogni premessa del sillogismo può avere 4 modi: affermativo o negativo, universale o particolare; ogni sillogismo è formato da 3 termini: maggiore, media e minore. Si può dunque calcolare che i modi totali di un sillogismo sono $4^3= 64$. Visto che esistono 4 tipi di sillogismi, in totale tutti quelli possibili sono $64\times 4 = 256$. Per Aristotele tuttavia esistono solo 14 tipi di sillogismi validi, tradizionalmente individuati da coppie di lettere del quadrato AEIO, in base al tipo di proposizione nelle premesse. Questo numero di sillogismi validi verrà ampliato nel tempo e, a seconda del criterio adottato, si avranno molte opinioni contrastanti.\\
+\'{E} fondamentale notare che i sillogismi hanno una validità solamente formale. Le premesse infatti possono essere ben formate dal punto di vista logico e comunque non rispecchiare la realtà, portando così ad una conclusione falsa. Ad esempio: Tutti gli uomini sono immortali. Socrate è un uomo. Socrate è immortale (inferenza corretta ma da premesse false). Aristotele è ben conscio di ciò tanto da indicare con delle lettere i termini dei sillogismi per favorire uno studio astratto del ragionamento.
+\subsection{I principi del ragionamento}
+\'{E} possibile così distinguere un insieme di sillogismi, detti "\textbf{scientifici}", che sono sia ben formati che veri. Come si fa però ad individuare le proposizioni vere? Il filosofo formula \textbf{tre principi generali} del ragionamento scientifico: 
+\begin{itemize}
+	\item principiò di identità: ogni cosa è uguale a se stessa ($P=P$)
+	\item principio del terzo escluso: tra due opposti contraddittori non c'è via di mezzo ($P \vee (\neg P$))
+	\item principio di non contraddizione: È impossibile che il medesimo attributo, nel medesimo tempo, appartenga e non appartenga al medesimo oggetto e sotto il medesimo riguardo $\neg(P \wedge (\neg P))$
+\end{itemize}
+A questi tre principi generali, dice Aristotele, ogni scienza deve affiancare dei principi propri, \textbf{i postulati}, che limitino l'ambito entro il quale si sta trattando. Visto che i postulati non sono definibili, essi si devono ricavare per induzione o deduzione. Tuttavia in entrambi i metodi non si riesce ad attingere all'universale, di conseguenza essi non potranno essere sicuramente veri ma al massimo verosimili. Vedremo come il problema dei postulati si farà molto interessante con l'evoluzione della logica. Le fonti su Aristotele sono state tratte principalmente da Geymonat \cite{Geymonat} vol.1 e, come per buona parte della logica dall'antichità al medioevo, da Maracchia \cite{Maracchia}.
+
+\section{Gli Elementi di Euclide}
+Euclide negli \textit{Elementi}, fa una summa della geometria del suo tempo, analogamente a quanto si fece con la logica nell'\textit{Organon} (di poco precedente all'opera euclidea). \'{E} di rilevanza per questa trattazione che negli \textit{Elementi} si tenti di applicare per la prima volta un \textbf{metodo assiomatico}, che distingue fra assiomi, dimostrazioni e teoremi. Nonostante questo metodo non sia ancora rigoroso e contenga imperfezioni, costituisce un nuovo approccio che troverà grandi sviluppi nella logica successiva. In particolare, Euclide individua 5 postulati fondamentali, indimostrabili per definizione, la cui evidenza intuitiva però ne garantirebbe la verità. L'autore stesso è particolarmente titubante riguardo al \textbf{quinto postulato} sulle rette parallele, meno elegante ed immediato degli altri (tanto da non farne uso sino alla ventinovesima proposizione). Attorno a questo postulato si svilupperà un' affascinante storia che porterà, nel XIX secolo, alla scoperta delle \textbf{geometrie non-euclidee} ed alla ricerca sui fondamenti di questa scienza (argomento squisitamente logico). Una sistemazione precisa della geometria euclidea sarà fornita dal matematico David Hilbert (1862 - 1943) nei \textit{Fondamenti della geometria} (1899).\\
+Una trattazione precisa ma accessibile su questi argomenti è contenuta in Geymonat \cite{Geymonat} (vol. 1 per Euclide e vol. V per le geometrie non euclidee).
+\section{La logica stoica}
+Il termine "logica" (\textit{l\'{o}gos}) viene usato per la prima volta da Zenone di Cizio, padre della filosofia stoica, riferendosi alla dottrina che ha per oggetto i discorsi o \textit{l\'{o}goi}.\\
+Gli stoici hanno il merito di aver introdotto un nuovo tipo di ragionamento, \textbf{anapodittico} (non dimostrativo), che ha la caratteristica di porre fra le premesse almeno un'ipotesi. Crisippo di Soli (279 a.C.-206 a.C.) individua cinque figure di base, con una struttura comune: vi è un lemma (Se è il primo, è il secondo) che costituisce l'ipotesi, un'assunzione ( Ma è il primo) ed una conclusione (Dunque è il secondo). Si noti che questo tipo di ragionamento non aggiunge nessuna nuova informazione, dal momento che risultano evidenti non solo le premesse ma anche la conclusione (da qui l'aggettivo anapodittico), a differenza del sillogismo, che aggiunge informazioni prima sconosciute. Queste figure vengono anche chiamate \textbf{sillogismi ipotetici}:
+\begin{enumerate}
+	\item Se è il primo, è il secondo. Ma è il primo. Dunque è il secondo.\\
+	$((p \rightarrow q) \wedge p) \rightarrow q$ (In seguito indicato come \textbf{Modus ponens}).
+	\item Se è il primo, è il secondo. Ma non è il secondo. Dunque neppure il primo.\\
+	$((p \rightarrow q) \wedge \neg q) \rightarrow \neg p$  (In seguito indicato come \textbf{Modus tollens}).
+	\item Non è possibile che siano insieme il primo ed il secondo. Ma è il primo. Non è dunque il secondo.\\
+	$(\neg(p \wedge q) \wedge p) \rightarrow \neg q$
+	\item O è il primo o è il secondo. Ma è il primo. Dunque non è il secondo. \\
+	$((p \veebar q) \wedge p )\rightarrow \neg q$
+	\item  O è il primo o è il secondo. Ma non è il secondo. Dunque neppure il primo. \\
+	$((p \veebar q) \wedge \neg p) \rightarrow q$
+\end{enumerate}
+Se le figure aristoteliche erano basate sui concetti, quelle stoiche hanno come unità fondamentale le proposizioni, rappresentate, nell'elenco precedente, dagli ordinali "primo" e "secondo". Da qui nasce l'esigenza di studiare i cosiddetti \textbf{connettivi logici}, ossia quelle particelle ("e", "o", "non", "se") che esprimono i legami fra le proposizioni e che tutt'oggi sono parte imprescindibile di qualsiasi logica.\\
+In conclusione, reputo interessante far notare che ai tre principi fondamentali di Aristotele i filosofi della stoà affiancarono quello che oggi è detto \textbf{principio di bivalenza}, secondo il quale ogni proposizione deve essere tassativamente o vera o falsa. Con un salto temporale di più di duemila anni, in tempi molto recenti, sono nate le cosiddette "Fuzzy logics", basate sulla negazione di questo assioma, in cui una proposizione può assumere più valori intermedi di verità. 
+
+\subsection{I paradossi o antinomie}
+Gli stoici furono fra i primi ad interessarsi ai paradossi (da "parà", contro e "doxa", opinione) o antinomie (da "anti-nomos", contro-legge), ovvero proposizioni ben formate alle quali è impossibile attribuire un valore di verità. Uno dei paradossi che conoscevano gli stoici è il celeberrimo \textbf{paradosso del mentitore}, attribuito nella sua forma iniziale al cretese Epimenide (VI secolo a.C.) che, riveduto, può essere espresso come: "io dico il falso" o "questo enunciato è falso". Se esso fosse vero, si incorrerebbe in una contraddizione; se invece fosse falso allora dovrebbe essere vera la negazione, cioè "non si da il caso che questo enunciato è falso", giungendo nuovamente ad una contraddizione. Questi enunciati, lungi dall'essere banali rompicapo, avranno un ruolo fondamentale nella logica del novecento, aprendo la cosiddetta "crisi dei fondamenti". 
+\section{La logica medievale}
+A partire dal II secolo a.C., si ha una lenta e generale decadenza dello spirito scientifico ed un abbandono dell'atteggiamento razionale nei confronti della realtà. Questo processo giunge a pieno compimento nel V secolo e si protrae per buona parte del Medioevo. In questo periodo vi fu una lunga fase di stasi nell'evoluzione della logica, che si basava quasi totalmente su quella aristotelica ed era limitata all'ambito della teologia e della metafisica. Tuttavia, nell'ultima fase del medioevo (dal 1200 circa), dopo una lenta riscoperta e catalogazione dell'opera aristotelica e stoica, comincia un fervente periodo di critica ed ampliamento della logica. Fra le nuove scoperte emergono:
+\subsection{La teoria dei quantificatori}
+I quantificatori universali erano già ampiamente usati nelle premesse dei sillogismi aristotelici anche senza una analisi approfondita ed una formalizzazione. Nel medioevo si arrivò a risultati che possono essere espressi, in notazione moderna, come: 
+\begin{align*}
+ \forall x \in A \leftrightarrow \neg \exists x \in \neg A\\ 
+ \exists x \in A \leftrightarrow \neg \forall x \in \neg A 
+\end{align*}
+Un altro importante passo avanti riguardo i quantificatori, utile per la futura formalizzazione della logica, è quello fatto da Alberto di Sassonia (1316 - 1390). Egli individua la possibilità di esprimere i quantificatori universali in funzione di et e vel nel seguente modo
+\begin{align*}
+	\forall x \in A : P(x) \leftrightarrow P(a) \wedge P(b) \wedge P(c) \wedge P(d) ...\\ 
+	\exists x \in A : P(x)\leftrightarrow P(a) \vee P(b) \vee P(c) \vee P(d) ...
+\end{align*}
+Dove a, b, c, d sono elementi dell'insieme A e i tre punti indicano che quanto detto per P(a), P(b), P(c), P(d) deve valere anche per tutti gli elementi in A.
+\subsection{La proprietà distributiva della negazione nei connettivi et e vel}
+Anche in questo caso sono presenti accenni di conclusioni simili in logiche classiche ma nel medioevo se ne fa un uso cosciente e sistematico. Queste due equivalenze sono
+\begin{itemize}
+	\item $\neg (A \wedge B) \leftrightarrow (\neg A) \vee (\neg B)$
+	\item $\neg (A \vee B) \leftrightarrow (\neg A) \wedge (\neg B)$
+\end{itemize}
+Oggi queste eguaglianze sono note come teoremi di De Morgan da Augustus De Morgan (1806 - 1871) che li riscoprì. 
+\subsection{Il teorema di Pseudo-Scoto: ex falso quodlibet}
+Il nome deriva dal fatto che questo scritto venne attribuito inizialmente a Giovanni Duns Scoto, mentre oggi si crede sia stato formulato da Giovanni di Cornovaglia. Questo teorema stabilisce che: 
+\begin{quotation}
+	Ad una qualsiasi proposizione che implichi una contraddizione formale, segue una qualsiasi altra proposizione secondo una conseguenza formale.
+\end{quotation}
+Nel medioevo questo teorema si sintetizzava con la formula "\textit{ex falso quodlibet}" ovvero "dal falso segue qualunque cosa". In parole più moderne, se in un sistema formale è derivabile sia un enunciato che la sua negazione (definizione di contraddizione formale), allora in quel sistema qualunque enunciato è derivabile.
+\subsection{Il tentativo di Raimondo Lullo}
+Termino la presentazione della logica medievale trattando il tentativo visionario di Raimondo Lullo (1232 - 1316) di costruire un'algebra della logica con cui risolvere meccanicamente qualsiasi problema (cfr. Maracchia \cite{Maracchia}). Questo metodo si basava nell'individuazione di alcuni termini semplici e di regole per combinarli. Così, grazie ad una macchina formata da dischi concentrici in movimento, si sarebbero potute estrarre meccanicamente tutte le proposizioni complesse e le verità. Nonostante il suo fallimento, questo primo tentativo diede inizio al sogno di poter applicare il calcolo algebrico alla logica, realizzato circa 600 anni dopo da George Boole.
+
+\section{La logica nel Seicento}
+Nonostante alcune significative conquiste della logica medievale, buona parte di essa era scaduta in dibattiti e speculazioni teologiche che nel tempo l'avevano ridotta ad una "gonfiatura vana e ridicola" (Pascal). La logica in questo periodo prende due strade distinte: una, critica verso la logica precedente, che si interessa più all'evolversi del pensiero nella realtà, ed un'altra che percorre temi tipici della moderna logica formale. Nel primo ambito si inscrivono il celebre \textit{Discorso sul metodo} di Cartesio e l'\textit{Art de persuader} e l'\textit{Esprit géométrique} di Pascal che si propongono di sostituire la vetusta disciplina della logica con un "metodo". L'apice di questo filone di studi si ha con la \textit{Logica di Port-Royale}, che segna un importante passo avanti verso un atteggiamento più rigoroso in logica.
+
+\subsection{Leibniz e il calcolo logico}
+Sul versante della logica formale, il massimo esponente è sicuramente Gottfried Wilhelm von Leibniz (1646 - 1716) quasi unanimemente considerato il precursore della \textbf{logica matematica}, termine che peraltro compare per la prima volta nei suoi scritti. Questi non vennero mai pubblicati dal filosofo e dovettero attendere fino al 1903 per essere riscoperti. I suoi risultati vennero ottenuti e superati solamente nel 1847 da George Boole. Se i suoi contemporanei criticavano la logica formale tradizionale, Leibniz riesce a coglierne l'importanza, rivalutando l'intuizione di Lullo (ridicolizzata da Cartesio). Il suo pensiero è sintetizzabile in quattro punti: 1. si può ottenere una lista di concetti primi da cui derivare tutti quelli complessi e, dunque, tutte le verità; 2. i concetti semplici si possono rappresentare come numeri primi e quelli complessi come prodotti di primi (\textbf{aritmetizzando} così la logica); 3. si può creare una lingua \textbf{characteristica universalis} (formata da caratteri e di potenziale illimitato) che segua un \textbf{calculus ratiocinator} con il quale desumere qualsiasi verità. Nonostante la sua acutezza, Leibniz non riuscì mai tuttavia a completare il suo sogno, pur avendo ottenuto risultati estremamente avanzati per la sua epoca. Per meglio comprendere le speranze leibniziane basti leggere queste celebri parole: 
+\begin{quotation}
+	Quando sorgano controversie non ci sarà più bisogno di dispute fra due filosofi di quanto non ce ne sia fra due computisti. Basterà infatti prendere la penna, sedersi all'abaco e dirsi vicendevolmente: \textbf{calcoliamo!}
+\end{quotation}
+
+\section{La logica booleana}
+Nella prima metà del XIX secolo si avverte un rinnovato interesse per la logica formale, sicuramente influenzato dalla scoperta delle geometrie non euclidee (Gauss, Lobachevsky, Bolay, anni '30 dell'ottocento), di un'algebra non commutativa (Rowan Hamilton, 1843) e, soprattutto, dall'affermarsi di una concezione combinatoria dell'algebra, marcatamente in Inghilterra. Inoltre, è decisiva la recente introduzione della \textbf{quantificazione dei predicati}, che permette di assegnare un quantificatore non solo ai soggetti (come nella logica aristotelica: "qualche uomo è mortale") ma anche ai predicati ("qualche uomo è qualche mortale").\\
+Questo contesto culturale (per cui rimando alla prefazione di Massimo Mugnai \cite{Boole} e al vol. IV del Geymonat \cite{Geymonat}) favorì il grande lavoro di George Boole (1815 - 1864), che nel 1847 pubblica \textit{L'analisi matematica della logica} \cite{Boole}. Con questo testo si raggiunge una matematizzazione della logica, che aprì la strada alla logica matematica moderna. Esso è soprattutto riconosciuto per la sua utilità pratica (nonostante la poca profondità a livello filosofico), ed oggi questa logica, detta \textbf{booleana}, sta alla base dell'informatica e dei dispositivi elettronici moderni. Di seguito sono riassunti brevemente i punti principali di quest'opera.
+\subsection{I \textit{primi princìpi}}
+L' \textit{Analisi} comincia con il definire i \textbf{primi princìpi}, ovvero i simboli e le proprietà del sistema:
+il simbolo $1$ rappresenta l'universo, che comprende tutte le categorie di oggetti; le lettere minuscole del tipo $x, y, z,...$ indicano le categorie specifiche di oggetti mentre $(1-x), (1-y), (1-z),...$ la categoria complementare (che può essere vista come $non-x, non-y, non-z,...$); lo $0$ rappresenta una classe vuota. Si procede definendo l'operazione di prodotto, che può essere considerata come l'intersezione fra i due insiemi, che da come risultato gli elementi comuni ai fattori. Dunque, ad esempio, $x(1) = x$; $x(1-x) = 0$. La somma e la differenza non sono definite in modo preciso e mantengono sempre una certa ambiguità fra il significato aritmetico e quello insiemistico.\\
+Boole individua inoltre tre proprietà fondamentali del ragionamento logico, che fungeranno da postulati del sistema: la proprietà associativa, commutativa e la \textbf{legge degli indici}.
+\begin{align*}
+	& x(u+v) = xu + xv\\
+	& xy =yx\\
+	& x^n = x
+\end{align*}
+\subsection{Le proposizioni}
+Nel secondo capitolo si trattano le proposizioni categoriche del quadrato AEIO (fig. 1).
+\begin{align*}
+	& \mathrm{A\ (Tutti\ gli\ x\ sono\ y) :}   &x(1-y) = 0\\
+	& \mathrm{E\ (Nessun\ x\ \acute{e} \ y) :} &xy = 0\\
+	& \mathrm{I\ (Alcuni\ x\ sono\ y) :\ \ }       &v = xy\\
+	& \mathrm{O\ (Alcuni\ x\ non\ sono\ y) :}  &v = x(1-y)
+\end{align*}
+Dove $v$ rappresenta un quantificatore indefinito che può essere interpretato come "alcuni", ma anche "tutti" o "uno" e che può essere attribuita sia a soggetti che a predicati.
+\subsection{Proposizioni e sillogismi categorici}
+Proseguendo il cammino della reinterpretazione della logica classica in versione booleana, si trattano i sillogismi categorici (sezione 1.3). Se le proposizioni sono esprimibili come equazioni di primo grado, i sillogismi saranno sistemi di due equazioni in tre incognite (termine maggiore, medio e minore) e la conclusione sarà l'equazione derivante dal sistema per l'eliminazione della lettera corrispondente al termine medio. Con questo potente approccio si può ricavare qualunque figura aristotelica. Ad esempio, la quarta (AI) sarà:
+
+\begin{align*}
+	&y(1 - x) = 0\ \ \ \           &&\text{Tutti gli y sono x}\\
+	&vz = vy \ \ \ \           &&\text{Alcuni z sono y}\\
+   &\over{\therefore vz(1 - x) = 0 }  &&\over{\therefore \text{Alcuni z sono x}}
+\end{align*}
+
+\subsection{Proposizioni e sillogismi ipotetici}
+Boole passa poi alle proposizioni ipotetiche (si veda sezione 3.1). Ora le lettere saranno da interpretare come proposizioni e, per il principio di bivalenza, potranno essere esclusivamente o vere o false.\\
+Il simbolo $1 - x$ individua i casi nei quali la proposizione $x$ è falsa, ma se essa è vera, potremo eguagliare la precedente a 0 (insieme vuoto): $1 - x = 0$ o, ugualmente, $x = 1$. Ancora, il simbolo $x$ individua i casi in cui la proposizione è vera, ma se essa è falsa avremo $x = 0$. 
+\subsubsection{Verità di proposizioni ipotetiche}
+Una proposizione ipotetica è definita come l'unione di più categoriche mediante congiunzione. \'{E} possibile così esprimere formalmente proposizioni ipotetiche; ad esempio, "x ed y sono vere simultaneamente" sarà $xy = 1$. Se però si volesse esprimere formalmente "o x o y sono vere" (inclusiva) il compito diventa già meno intuitivo. La regola generale per esprimere formalmente una proposizione ipotetica è:
+\begin{quote}
+	REGOLA. Si consideri quali sono i casi distinti e mutuamente esclusivi dei quali è implicito nell'enunciato della proposizione data che qualcuno è vero; e si eguagli la somma delle loro espressioni elettive (ovvero le espressioni formali dei casi) all'unità: ciò darà l'equazione della proposizione data.
+\end{quote}
+Dunque, portando ad esempio la proposizione precedente avremo:
+\begin{align*}
+	x(1 - y)\ \ \ \           &&\text{x\ vera\ e\ y\ falsa}\\
+	y(1 - x)\ \ \ \           &&\text{y\ vera\ e\ x\ falsa}\\
+	xy \over{x - xy + y = 1}  &&\text{\ \ \ x\ vera\ e\ y\ falsa} \over{\text{o\ x\ o\ y\ sono\ vere}}
+\end{align*}
+Dove le tre premesse sono, come da regole, i casi distinti e mutuamente esclusivi, e la conclusione è la somma di essi eguagliata a 1.
+\subsubsection{I sillogismi ipotetici}
+I sillogismi ipotetici non sono altro che sistemi fra almeno una proposizione ipotetica e altre proposizioni. Quelli individuati da Boole sono maggiori di quelli stoici (comprendendo anche quelli composti da più di due proposizioni),  porto come esempio il \textit{modus ponens} e il \textit{modus tollens}:
+
+\begin{align*}
+	&&x (1 - y) = 0                       && \text{Se x è vera,  y è vera}\\        
+	& \mathrm{Modus\ ponens} &x  = 1                              && \text{Ma x  vera}\\             
+	&&\over{\therefore y = 1}             && \over{\therefore \text{Dunque y è vera}}
+\end{align*}
+\begin{align*}
+	&&x (1 - y) = 0                       && \text{Se x è vera,  y è vera}\\        
+	& \mathrm{Modus\ tollens} &      x  = 0                        && \text{Ma x è falsa}\\             
+	&&\over{\therefore y = 0}             && \over{\therefore \text{Dunque y è falsa}}
+\end{align*}
+\subsection{Le funzioni elettive}
+Ogni proposizione può essere espressa come una funzione detta "elettiva" della quale si possono trovare le soluzioni.\\
+\textbf{Esempio.} Si risolva la funzione $(1-x)y = 0$ ("Tutti gli y sono x") per y in funzione di x.\\
+Essendo y una funzione di x, si considera il caso più generale 
+\begin{align}
+	&y = vx + v'(1-x) &&\text{: "y è costituita da qualche x e qualche altra non-x"}
+\end{align}
+Si sostituisce quest'ultimo nell'equazione originaria 
+\begin{align*}
+	&(1 - x)(vx + v'(1 - x)) = v'(1 - x) = 0
+\end{align*}
+Che, intuitivamente, ammette come soluzione solamente $v' = 0$. Si sostituisce nell'equazione di partenza.
+\begin{align}\label{eqn:generale in y}
+	&y = vx
+\end{align}
+Questa è la soluzione più generale possibile, di y in funzione di x, in cui v è un quantificatore generico.\\
+Questo processo è generalizzabile, sostituendo ai quantificatori generici $v, v',...$ una funzione arbitraria. La forma più generica della funzione  $\varphi(xy)$ è\\
+\begin{align}\label{eqn:generale in phi}
+	&\varphi(00)(1 - x) (1 - y) + \varphi(01) (1 - x) y+\varphi(10)x (1 - y)+\varphi(11)xy = 0
+\end{align}
+In cui $0$ ed $1$ all'interno della funzione indicano, in ordine, la verità o meno di $x$ ed $y$.\\
+Si può così sostituire la \eqref{eqn:generale in y} nella \eqref{eqn:generale in phi}:
+
+\begin{align*}
+	&[\varphi(01)+(\varphi(11)-\varphi(10))v]x + [\varphi(00)+(\varphi(01)-\varphi(00))v'](1 - x) = 0
+\end{align*}
+
+Quest'ultima ha come risultati
+
+\begin{align*}
+	\begin{cases}
+		\varphi(10) + (\varphi(11) - \varphi(10))v  = 0\\\\
+		\varphi(00) + (\varphi(01) - \varphi(00))v' = 0
+	\end{cases}
+	&&\begin{cases}
+		v = \dfrac{\varphi(10)}{\varphi(10) - \varphi(11)}\\\\
+		v'= \dfrac{\varphi(00)}{\varphi(10) - \varphi(00)}
+	\end{cases}
+\end{align*}
+
+Che, sostituiti nella \eqref{eqn:generale in y}, danno l'equazione di risoluzione generale che, con opportune sostituzioni, fornisce le soluzioni di qualunque equazione elettiva.
+
+\begin{align}
+	y = \dfrac{\varphi(10)}{\varphi(10) - \varphi(11)}x +  \dfrac{\varphi(00)}{\varphi(10) - \varphi(00)} (1 - x)
+\end{align}
+
+Se i rapporti fra le costanti danno $\frac{0}{0}$, lo sostituiremo con $v$, se danno $\frac{1}{0}$ dovremo porre il membro, separatamente, uguale a 0 (per chiarimenti su queste considerazioni si veda "l'analisi matematica della logica", p.80). \\
+Ecco un esempio pratico in cui si utilizza una funzione elettiva.\\\\
+\textbf{Esempio.} Determinare y in funzione di x data $x(1 -y) = 0$:
+
+\begin{align*}
+	\varphi(xy) = x(1 - y)                                                             &&\text{"Tutti gli x sono y"}\\
+\end{align*}
+
+Considerato che $\varphi(00)= 0,\ \varphi(01) = 0,\ \varphi(10) = 1,\ \varphi(11) = 0;$
+
+\begin{align*}
+	y = \dfrac{1}{1 - 0} x + \dfrac{0}{0 - 0} (1 - x) = x + \dfrac{0}{0} (1 - x) =\\
+	= x + v (1 - x)                                                                 &&\text{"y consiste in x più un residuo indefinito non-x"}
+\end{align*}
+Quest'ultima è la funzione generale per esprimere $y$ in funzione di $x$ a partire dalla formula sopramenzionata.
+\section{Giuseppe Peano}
+Nonostante la potenza dell'approccio booleano, è innegabile che esso presenti alcune ambiguità (che per certi versi possono essere considerate un punto di forza per Boole). Ad esempio, il simbolo "+", che può indicare la somma aritmetica ma anche l' unione di classi o la disgiunzione di proposizioni ed il simbolo "1" può rappresentare un numero ma anche l'insieme universo. In particolare Boole non offre una precisa assiomatizzazione della matematica; questo è invece l'obiettivo del torinese Giuseppe Peano (1858 - 1932) che voleva fornire un sistema assiomatico analogo a quello degli \textit{Elementi}, questa volta per l'aritmetica. Formulò così cinque i postulati (detti \textit{di Peano}) che seguono: 
+\begin{enumerate}
+\item Zero è un numero naturale
+\item Il successore di un numero naturale è un numero naturale
+\item zero non è il successore di nessun numero naturale
+\item Se due numeri hanno lo stesso successore , allora sono lo stesso numero
+\item Ogni proprietà di cui gode lo zero e tale che, se ne gode un numero, ne gode anche il suo successore, è una proprietà di tutti i numeri naturali.
+\end{enumerate}
+In queste righe è contenuta, in forma molto semplice, l' idea di definizione dei numeri mediante ricorsione a partire dallo zero, che rivedremo a breve in Frege.\\
+Peano introdusse inoltre un simbolismo semplice e preciso che è parte integrante di quello moderno. Per estendere questa brevissima esposizione su Peano rimando a Berto \cite{Tutti pazzi per G\"{o}del} e, in forma più estesa al vol.V del Geymonat \cite{Geymonat}.
+\section{Georg Cantor}
+Un altro grande rappresentante della logica ottocentesca è Georg Cantor (1845 - 1918) che creò la teoria degli insiemi, oggi considerata una parte fondamentale della matematica. Senza scendere nei dettagli di questo testo, è interessante ai nostri fini che Cantor definisca quello che oggi è detto \textbf{Principio di astrazione}. Questo principio stabilisce che un insieme può essere individuato da qualsiasi raggruppamento mentale che si riesca ad immaginare. Con le parole di Cantor: 
+\begin{quotation}
+Con "insieme" si intende qualsiasi riunione di un tutto M di oggetti (che vengono detti "elementi" di M) della nostra intuizione o del nostro pensiero.
+\end{quotation} 
+Anche esprimibile, in notazione moderna come
+\begin{align*}
+\exists y \forall x (x \in y \leftrightarrow \alpha[x])
+\end{align*}
+ovvero: "esiste un insieme $y$, tale che, per ogni $x$, $x$ appartiene ad $y$ se e solo se $x$ ha la proprietà $\alpha[x]$ (dove $\alpha[x]$ è sostituibile con una qualsiasi formula del linguaggio formale)".\\
+Già dal 1899 Cantor era a conoscenza dell'insorgenza di un paradosso in questa definizione in quanto, definito $V$ l'insieme comprensivo di tutti gli oggetti, per lo stesso \textit{teorema di Cantor} (si veda il primo capitolo di \cite{Tutti pazzi per G\"{o}del} per una semplice e chiara esposizione), deve esistere un insieme più grande di $V$, che è contraddittorio con la sua stessa definizione. Essendo un uomo di fede, Cantor giustificava questo paradosso con l'impossibilità intrinseca per l'uomo di raggiungere l'Assoluto e non vi diede una grande importanza (che invece avrà).
+\section{Gottlob Frege}
+L'assiomatizzazione della logica di Peano, per quanto pionieristica, non era esposta in modo informale e mancava di un completo rigore logico nelle catene dimostrative. Gottlob Frege (1848 - 1925) si proponeva di dimostrare non solo che tutti i principi aritmetici discendono dalla logica, ma soprattutto che la matematica non è altro che un caso particolare della logica (tesi che prenderà il nome di "logicismo"). Per far questo, prima di tutto bisogna istituire un sistema di simboli che non ammetta ambiguità ed individuare le leggi basilari della logica (una nuova \textit{characteristica universalis}, usando le parole di Leibniz). Il secondo passo è quello di derivarne l'intera teoria dei numeri, a partire dal concetto stesso di numero, per poi desumerne tutta la matematica. 
+\subsection{\textit{Ideografia} (1879)}
+In questo testo si formula una notazione molto complessa, ormai in disuso, che sostituirò con una più moderna, seguendo a grandi linee quanto ha fatto Kenny \cite{Frege}. Tuttavia questo non è rilevante, in quanto il valore dell'opera risiede principalmente nel mettere a fuoco i punti essenziali di una dimostrazione.\\
+Frege abolisce la classica distinzione fra soggetto e predicato, per poi introdurre un concetto nuovo di funzione. Frege analizza la frase "Bruto ha ucciso Cesare", questa può essere vista come una funzione del tipo "... ha ucciso Cesare" oppure "Bruto ha ucciso ..." ma anche come "... ha ucciso ...". Le prime due saranno funzioni ad un argomento e la terza a due. Noi le indicheremo con lettere maiuscole, ad esempio: $F(x)$ ($x$ ha la proprietà $F$) per quelle ad un argomento e $G(x, y)$ ($x$ è legata dalla proprietà $G$ con $y$) per quelle a due.\\
+Si procede fornendo una teoria dei quantificatori completa: si introduce un simbolo per indicare che una funzione è vera per qualsiasi argomento (da noi sostituito dalla variabile fra parentesi che precede l'enunciato), mentre per esprimere il concetto di "alcuni" si introduce il simbolo di negazione "$\neg$" (si veda la sezione 4.1).  
+\begin{align*}
+& (x) (F(x))                     && \text{"Per\ ogni\ x,\ x\ gode\ della\ proprietà\ F"} \\
+& \neg (x) \neg (F(x))           && \text{"Alcuni x godono della proprietà $F$"}
+\end{align*}
+Si definisce inoltre il segno di implicazione condizionale "$\rightarrow$", paragonabile al "se" del linguaggio naturale. Infine, definisce il simbolo di identità di contenuto "$\equiv$" asserendo che se $x \equiv y$ allora $x$ è sostituibile con $y$ in una funzione, mantenendone il valore di verità inalterato e il simbolo "$\vdash$" (ripreso in seguito in altri simbolismi che vedremo), che indica che ciò che segue è una dimostrazione all'interno del sistema (e che noi non useremo). Questi sono tutti i simboli del sistema con i quali, ad esempio, è possibile riprodurre il quadrato AEIO. Frege procede indicando 9 assiomi, che come vedremo saranno modificati ed hanno un valore principalmente storico. L'unica regola di inferenza assunta è il \textit{modus ponens} (si veda sezione 3.1). In conclusione, nell'Ideografia, Frege definisce la nozione di \textit{ereditarietà di una proprietà}, che non è un postulato ma serve solamente per semplificare le dimostrazioni. 
+\begin{align}\label{eqn:ereditarietà}
+&(y) (F(y) \rightarrow (x)(f(y,x) \rightarrow F(x))) && \text{"La proprietà F è ereditaria nella f-successione"}
+\end{align} 
+Ad esempio, la proprietà \textit{essere umano} è ereditaria nella successione \textit{figlio di}. Si noti l'introduzione del simbolo di successione, qui indicato con una lettera minuscola. Questo tipo di inferenza sta alla base dell'induzione matematica.
+
+\subsection{\textit{I fondamenti dell'aritmetica} (1884)}
+Ciò che spinse Frege a scrivere questo testo fu la convinzione che i concetti fondamentali dell'aritmetica fossero mal compresi dai migliori matematici e filosofi. La prima metà del testo è dedicata alla confutazione di tesi che altri filosofi sostenevano riguardo la natura dei numeri. In particolare, svolge una critica puntuale all'empirismo di Jhon Stuart Mill (1806 - 1873) e all'intuizionismo di Kant (1724 - 1804). Riprendendo la terminologia kantiana, Frege sostiene che l'aritmetica sia "\textit{analitica a priori}", perché la sua dimostrazione parte da principi puramente logici e si sviluppa con regole generali della logica. Per dimostrarlo bisognerà definire i numeri in termini logici, senza far ricorso a nozioni esterne (che renderebbero l'aritmetica \textit{sintetica}). L'idea di fondo è quella di definire i numeri come insiemi di insiemi. Ora, per definire l'infinità dei numeri, riprendendo un idea leibniziana già vista in Peano, basterà definire il numero 0 e 1, ed una nozione di incremento unitario che permetta di derivare tutti gli altri. Frege formula 3 definizioni che spiegano il significato dell'attribuzione di un numero ad un concetto:
+\begin{itemize}
+	\item Ad un concetto F spetta il numero 0 se dato un qualunque oggetto $a$, $a$ non cade sotto F.
+	\item Ad un concetto F spetta il numero 1 se non è vero che dato un qualunque oggetto $a$, $a$ non cade sotto F; ma è vero invece che se $a$ cade sotto F e $b$ cade sotto F, allora $a$ e $b$ sono identici. 
+	\item Al concetto F spetta il numero $n + 1$ se esiste un oggetto $a$, tale che al concetto "oggetti che cadono sotto F, ma diversi da $a$" spetta il numero $n$.
+\end{itemize}
+Potrebbe sembrare che lo scopo sia stato raggiunto, ma Frege puntualizza che "in realtà abbiamo unicamente espresso il senso delle espressioni \textit{spetta il numero 0} e \textit{spetta il numero 1}, ma di qui non si riesce affatto di caratterizzare lo 0 e l'1".
+A partire da queste 3 definizioni, insieme ad una definizione puramente logica di uguaglianza e disuguaglianza (mediante la definizione di corrispondenza biunivoca), si dispone di tutti gli strumenti per definire i numeri. Si comincia con lo 0:
+\begin{enumerate}
+	\item[\textbf{zero}.] 0 è il numero naturale che spetta  al concetto "disuguale da se stesso".
+\end{enumerate}
+Infatti dal momento che ogni cosa è uguale a se stessa, non c'è niente che cada sotto il concetto "disuguale da se stesso". Per passare al numero 1, Frege deve adesso definire la relazione fra due numeri contigui della successione numerica: 
+\begin{enumerate}
+	\item[$\mathbf{n + 1}$. ] Esistono un concetto $F$ e un oggetto $x$, che cade sotto $F$, per i quali valgono le seguenti proposizioni: $n$ è il numero che spetta a $F$ e $m$ invece è il numero che spetta al concetto di "ciò che cade sotto $F$ ma è diverso da $x$.
+\end{enumerate}
+Si può chiarire quanto detto con un esempio non logico. Il numero che spetta al concetto \textit{"monarca Tudor"} è 5. Se però si prende uno di questi oggetti, ad esempio re Enrico VIII, il numero che spetta al concetto \textit{"monarca Tudor eccetto Enrico VIII"} è 4, questi due numeri sono uno successore dell'altro. Tornando in ambito logico, Frege utilizza il concetto \textit{"uguale a zero"}: sotto questo concetto cade uno ed un solo oggetto: il numero 0. D'altra parte, sotto il concetto \textit{"uguale a zero, tranne il numero 0"}, chiaramente cadranno zero oggetti. \'{E} possibile dunque affermare che
+\begin{enumerate}
+	\item[\textbf{uno}.] Vi è un concetto, \textit{"uguale a zero"}, ed un oggetto che cade sotto di esso, lo zero, tali che il numero che spetta al concetto \textit{"uguale a zero"} è 1 ed il numero che spetta al concetto \textit{"uguale a zero, tranne il numero 0"} è 0.
+\end{enumerate}
+In base alla definizione di successore immediato (n+1), 1 è il successore di 0. In sintesi, tutti i numeri sono definibili come segue:
+\begin{enumerate}
+	\item[ ] 0 è il numero che spetta al concetto \textit{disuguale da se stesso}
+	\item[ ] 1 è il numero che spetta al concetto \textit{uguale a 0}
+	\item[ ] 2 è il numero che spetta al concetto \textit{uguale a 0 o 1}
+	\item[ ] 3 è il numero che spetta al concetto \textit{uguale a 0, 1 o 2}
+\end{enumerate}
+Per concludere, bisogna dimostrare che questo schema possa generare una serie infinita. Frege si serve della nozione di \textit{ereditarietà di una proprietà} \eqref{eqn:ereditarietà} per definire i concetti di \textit{essere successore immediato di} (applicando la definizione di successore numerico sopra esposta) e di \textit{essere membro della successione dei numeri naturali che termina con n}. Il procedimento che Frege utilizza per questa dimostrazione è detto di induzione matematica, in cui come base si ha la definizione di zero e come passo dell'induzione (che comprende i due concetti appena definiti): 
+\begin{enumerate}
+	\item[\textbf{passo.} ] Se $a$ è il successore immediato di $d$, e se è vero che il numero spettante al concetto \textit{membro della successione dei numeri naturali che termina con d} è il successore immediato di $d$, allora è vero anche per $a$ che il numero spettante al concetto \textit{membro della successione dei numeri naturali che termina con a} è il successore immediato di $a$.
+\end{enumerate}
+Secondo quanto esposto, l'aritmetica è sintetica a priori: essa può essere considerata un'estensione della logica.
+
+\subsection{\textit{Grundgesetze der arithmetik} (1893 1\textdegree\ volume - 1903 2\textdegree\ volume)}
+I concetti de \textit{I fondamenti dell'aritmetica} sono stati esposti discorsivamente, senza fare ricorso ad un sistema formale. Non ci deve dunque stupire che lo stesso autore affermi di aver mostrato semplicemente la probabilità che l'aritmetica sia derivata dalla logica: non si può escludere infatti che fra le ambiguità del linguaggio naturale non sia stata inserita qualche premessa non logica. Nel primo volume dei \textit{Grundgesetze der arithmetik} (I principi dell'aritmetica), opera che doveva essere l'apice della produzione fregeiana, si tenta di esporre in modo rigoroso quanto già visto nelle opere precedenti. La notazione usata è simile a quella dell'\textit{Ideografia}, con alcune modifiche. Le più interessanti sono l'introduzione di 6 nuovi assiomi, sostitutivi dei 9 precedenti, e del principio primo di \textbf{decorso di valori}. Brevemente:\\
+Con l'equazione $x^2 = 4$ non si può affermare che le due forme siano identiche ma si deve intendere che, per qualunque argomento $x$, esse assumeranno sempre gli stessi valori. L'insieme dei valori che assume una funzione può essere visto come "tutti i valori che cadono sotto di essa" (in questo caso -2 e +2). Il simbolo adottato per rappresentarlo è una lettera greca corsiva con un accento dolce, seguita dalla funzione di cui interessa il decorso di valori (ad esempio "$\overset{,}{\varepsilon}(x^2)$").  L'autore in realtà non chiarisce in modo soddisfacente questo concetto, dicendo che non è dimostrabile e che deve essere ritenuto "una legge logica fondamentale". Questo simbolo sta alla base del V assioma:
+\begin{enumerate}
+\item [\textbf{V.}] $( \overset{,}{\varepsilon} f(x) = \overset{,}{\alpha} g(y) ) = ( (z) f(z) = g (z) )$ (\textit{se i decorsi di valori di due funzioni (o insiemi) sono identici, allora il valore di una funzione per un dato argomento è sempre lo stesso del valore dell'altra funzione per lo stesso argomento, e viceversa})
+\end{enumerate}
+In altre parole, se i decorsi di valori di due funzioni sono identici, allora anche le funzioni saranno identiche. Questo assioma dunque permette di passare dalla funzione all'estensione e, inversamente, dall'estensione alla funzione. Per questo esso viene detto \textbf{Principio di Estensionalità}.  Questo principio, insieme al \textbf{Principio di astrazione} cantoriano,  contraddistinguono quelle che oggi sono dette "teorie ingenue degli insiemi" (na\"{i}ve set theory). Quest'ultima frase può dare un indizio su ciò che era in procinto di accadere nella storia della logica. 
+
+\section{La crisi dei fondamenti}
+La stagione della ricerca logica del XIX secolo può definirsi conclusa con la pubblicazione del primo volume dei \textit{Grundgesetze}. Nel 1902, quando il secondo volume era già stato dato alle stampe, un giovane Bertrand Russell (1872-1970) invia una lettera a Frege in cui si espone un'antinomia che avrebbe messo in crisi l'intero sistema fregeiano e tutta la matematica. \'{E} possibile spiegare l'antinomia di Russell nel modo seguente:\\
+\'{E} possibile distingue la totalità degli insiemi in due categorie: quelli che appartengono a se stessi, ad esempio  "l'insieme di tutti i concetti astratti", che appartiene a sé stesso perché a sua volta è un concetto astratto (x $\in$ x), e quelli che non appartengono a se stessi come "l'insieme di tutte le tazze da tè", che chiaramente non è una tazza da tè (x $\notin$ x). Ora, si definisca R come l'insieme che contiene tutti gli insiemi che non appartengono a se stessi ($R = \{ x| x \notin x \} $), si vuole sapere se l'insieme R stesso goda della proprietà di far parte di se stesso. Si presentano dunque due possibilità, entrambi contraddittorie:
+
+\begin{itemize}
+	\item $R \in R$, ma allora, R diventerebbe un insieme che contiene se stesso e, allo stesso tempo, sarebbe contenuto in R. Questa è una contraddizione per la definizione di R come insieme di tutti gli insiemi che \textbf{non} contengono se stessi. 
+	\item $R \notin R$, ma allora R, che è un insieme che non contiene se stesso, non fa parte di R, e dunque esiste un insieme che non contiene sè stesso e che non è contenuto in R. Questa è una contraddizione per la definizione di R come insieme di \textbf{tutti} gli insiemi che non contengono se stessi.
+\end{itemize}
+Il lettore avrà sicuramente intuito che questa antinomia deriva direttamente dai principi di estensionalità ed astrazione adottati nell'opera fregeiana. Frege stesso tentò in tutti i modi di modificare il V postulato, senza successo. In particolare, la causa di questo paradosso è legata al fatto che non è possibile definire un insieme con un concetto arbitrario come quello di "insieme di tutti gli insiemi che non contengono se stessi", senza creare una contraddizione. 
+
+\subsection{Le risposte alla crisi dei fondamenti}
+All'antinomia di Russell e a quella di Cantor ne seguirono varie fra cui quelle di K\"{o}nig, Richard e Burali-Forti: la struttura stessa della matematica, a partire dalle sue fondamenta, aveva cominciato a vacillare, tanto che Frege stesso riconobbe il fallimento del suo programma (e quindi anche della fondazione dei numeri su base logica) e lo abbandonò definitivamente.\\
+In risposta a questi problemi, emersero tre linee di pensiero: gli \textbf{intuizionisti}, di cui il massimo rappresentante è Henri Poincaré, secondo i quali le antinomie sono la prova dell'infondatezza del tentativo logicista; i \textbf{formalisti}, fra cui il grande matematico David Hilbert, che abbandonano il tentativo di una sistemazione unitaria di tutti i concetti astratti, dividendo la logica in vari sistemi formali che dovrebbero dimostrare tutte le diverse "sottologiche" (che corrispondono alle diverse branche della matematica); ed infine i \textbf{logicisti}, su cui ci soffermeremo.
+Questa scuola di pensiero nutre ancora la speranza di poter creare una "grande logica" senza incorrere in antinomie. Con questo spirito nasce la colossale opera dei \textit{Principia Mathematica} (1902-1910) di Russell e Whitehead, considerata manifesto del logicismo. Questi ritengono che la radice comune di tutte le antinomie sta nell'"autoriferimento o riflessività", così descritta da Russell:
+\begin{quotation}
+In ogni contraddizione viene detto qualcosa intorno a \textit{tutte} le classi di un qualche tipo, e da ciò che viene detto sembra generarsi un nuovo caso che nello stesso tempo è e non è dello stesso tipo dei casi che erano tutti implicati in quanto viene detto.
+\end{quotation}
+Per eliminare la possibilità di "dire qualcosa" intorno a classi con queste caratteristiche, in modo da non far insorgere antinomie, i due logici creano la "teoria dei tipi". Essa gerarchizza gli enunciati, differenziandoli in base alla loro complessità insiemistica e concettuale: al tipo 1 apparterranno gli individui, al tipo 2 le classi di individui, al tipo 3 classi di classi di individui, al tipo 4 classi di classi di individui e così via. La relazione di appartenenza può sussistere solo tra enti di precisi tipi, in modo da eliminare la maggior parte delle antinomie (fra cui quella di Russell). Questo espediente però rende impossibile la dimostrazione di alcuni teoremi cruciali della matematica (riduce la potenza del sistema); si aggiunge allora l'\textbf{assioma di riducibilità} che, semplificando in maniera estrema, riduce la rigidità della tipizzazione, aumentando nuovamente la potenza del sistema.\\
+Le critiche che vennero mosse ai metodi dei \textit{Principia} sottolineavano l'arbitrarietà di alcune delle sue parti e, marcatamente, la teoria dei tipi e l'assioma di riducibilità. Alcuni studiosi ritenevano infatti che questi principi non si poggiassero su basi logiche solide e che fossero stati introdotti ad hoc per dimostrare una convinzione preconcetta (Russell è stato paragonato ad un fisico, che si avvicina al risultato per approssimazioni). Per questo molti dei lavori logicisti successivi cercarono di raggiungere lo stesso obiettivo evitando questi difetti. Ogni nuovo tentativo tuttavia portava o a risultati che implicavano il rifiuto di parti della matematica o ad una riduzione dell'idea iniziale di "grande logica", circoscrivendo la portata della trattazione. Dopo il fallimento di uno dei più completi tentativi di fondare la matematica rigettando l'assioma di riducibilità, da parte di Frank Ramsey nel 1926, il logicismo nella sua forma forte vide definitivamente la sua conclusione. Per un'esposizione più ampia sulla crisi dei fondamenti si consulti il volume VI di Geymonat \cite{Geymonat}.
+
+\section{I teoremi di incompletezza di G\"{o}del}
+Già nel 1900, al secondo Congresso Internazionale dei Matematici, Hilbert aveva stilato una lista dei 23 problemi ancora aperti in matematica. Il secondo problema della lista era quello di dimostrare la \textbf{coerenza} dell'aritmetica (ovvero dimostrare che all'interno dell'aritmetica non si possano dimostrare sia $P$ che $\neg P$). Questo punto era cruciale nella risoluzione della "crisi dei fondamenti" poiché i problemi riscontrati (le antinomie) non sono altro che dimostrazioni di incoerenza di un sistema. Hilbert aveva in mente un programma che consisteva di due punti: (1) formalizzare totalmente l'aritmetica, "spogliando i segni logici di ogni significato", per renderla un calcolo puramente meccanico (in linea con le idee formaliste); (2) dimostrare \textbf{metamatematicamente} (cioè con un linguaggio apposito che "parli" della matematica) la coerenza dell'aritmetica formalizzata con metodi puramente \textbf{finitari} (assolutamente sicuri, che non implichino definizioni come quelle cantoriane e fregane che portano ad antinomie). Nel 1931 il venticinquenne Kurt G\"{o}del (1906 - 1978) pubblica l'articolo \textit{On formally undecidable propositions of Principia Mathematica and related systems}, in cui si dimostra un teorema (e un secondo viene congetturato) che avrebbe avuto enormi conseguenze. Seguendo Berto \cite{Tutti pazzi per G\"{o}del}, di seguito è riassunta semplicemente questa dimostrazione, spesso paragonata ad un'opera d'arte. 
+
+\subsection{La g\"{o}delizzazione}
+Dopo aver formalizzato completamente l'aritmetica, adottando un simbolismo simile a quello dei \textit{Principia Mathematica}, il primo passo, e forse quello più geniale, sta nell'idea di trasformare ogni simbolo, teorema e dimostrazione in una sequenza numerica, mediante un processo detto di \textbf{g\"{o}delizzazione}. Per la questa dimostrazione adotterò un sistema di simboli più semplice: l' \textbf{Aritmetica tipografica} o \textbf{AT}, come fatto da Hofstadter \cite{Godel Esher Bach}.\\
+Se l'aritmetica è completamente formalizzata, si può creare una funzione, che chiameremo g(x), che associ ad ogni simbolo del sistema un numero dispari (capiremo a breve il perché):
+\begin{align*}
+&g(0)=3       &&g(')=5            &&g(+)=7                &&g(\times)=9           &&g(=)=11       &&g(\neg)=13\\
+&g(\wedge)=15 &&g(\vee)=17        &&g(\rightarrow)=19     &&g(\leftrightarrow)=21 &&g(\forall)=23 &&g(\exists)=25\\    
+&g(()=27      &&g())=29           &&g(x)=31               &&g(y)=33               &&g(z)=35       &&...
+\end{align*}
+Spontaneamente, si tende ad associare ogni simbolo alla funzione intuitiva comunemente conosciuta (addizione, moltiplicazione...), tuttavia bisogna dimenticare che questi sono solamente simboli, che rappresentano \textbf{funzioni ricorsive} (ci tornerò) con uno specifico significato. Che poi gli effetti dei simboli corrispondano alla interpretazione intuitiva è una considerazione che può essere fatta in un secondo momento. Un simbolo che probabilmente risulta non intuitivo è l'apostrofo, che serve ad indicare i numeri, ad esempio $0'$ rappresenterà l' $1$, $0''$ il $2$ e così via. Inoltre, visto che le lettere associabili a variabili aritmetiche sono infinite, ci saranno infiniti numeri dispari a partire dal 31 in poi che le rappresenteranno. Nonostante la formulazione di questo linguaggio, lo stesso G\"{o}del non intraprende una dimostrazione completamente formale, cioè procedendo esclusivamente per dimostrazioni all'interno dell'AT, ma usa anche formule simboliche che rappresentano formule dell'AT e che è dimostrabile che possano avere un corrispettivo al suo interno (come preciserò in seguito). Si tenga però sempre in mente la differenza fra questi linguaggi.\\
+Date queste premesse, ogni teorema dell'AT non sarà altro che una sequenza ben formata (formata secondo le regole del sistema) di simboli. G\"{o}del sfrutta il Teorema Fondamentale dell'Aritmetica, che afferma l'unicità della scomposizione in fattori primi di ogni numero intero positivo, per formulare una procedura che permette di codificare (o \textbf{g\"{o}delizzare}) un teorema, sfruttando i numeri primi. A partire dal numero primo più basso (il 2), gli si eleva il numero associato al primo simbolo del teorema; il secondo simbolo del teorema, che moltiplicheremo al primo, risulterà dal secondo numero primo (il 3) elevato al numero associato a quel simbolo, e così via. Eccone semplice esempio:
+\begin{align*}
+&0= 0                                    && \text{teorema dell'AT}\\
+&3;\ 11;\ 3                               && \text{simboli dell'AT codificati}\\
+&2^3 \cdot 3^{11} \cdot 5^3 = 177.147.000 && \text{numero di G\"{o}del del teorema}
+\end{align*}
+
+Visto che ogni teorema g\"{o}delizzato conterrà sempre una potenza di 2, non c'è pericolo di sovrapposizione con i numeri usati per i simboli (proprio per questo dispari).\\
+Inoltre, visto che una dimostrazione all'interno dell'AT può essere considerata come una sequenza di teoremi, con un procedimento analogo a quello precedente, è possibile g\"{o}delizzare una dimostrazione usando come esponenti le g\"{o}delizzazioni (in ordine) dei vari teoremi della dimostrazione
+\begin{align*}
+&g(\alpha_1);\ g(\alpha_2);\ g(\alpha_3)\                                          && \text{numeri di G\"{o}del dei teoremi della dimostrazione}\\
+&g(\sigma) = 2^{g(\alpha_1)} \cdot 3^{g(\alpha_2)} \cdot 5^{g(\alpha_3)}         && \text{numero di G\"{o}del della dimostrazione}
+\end{align*}
+Si noti che questa procedura è applicabile a qualsiasi sistema simbolico. Tuttavia, in sistemi del tipo dell'AT, si ha l'interessante caratteristica che la stringa di numeri della g\"{o}delizzazione costituisce a sua volta un insieme ben formato di simboli dell'AT (un numero). Si ha così la straordinaria possibilità di avere come argomento di funzioni, numeri rappresentanti funzioni stesse del sistema: si inserisce così, all'interno del linguaggio, un metalinguaggio! (la cui necessità ai fini di questa dimostrazione era già stata individuata dal programma di Hilbert).
+\subsection{"Io non posso essere dimostrato": costruire l'enunciato $\gamma$}
+La dimostrazione del Teorema di Incompletazza è basata sulla formulazione di un enunciato all'interno dell'AT che non solo parli di un teorema dell'AT ma che parli proprio di se stesso e che in particolare affermi che lui stesso non può essere dimostrato all'interno dell'AT (l'enunciato $\gamma$). Se nel linguaggio naturale l'autoreferenza è semplicemente ottenibile con espressioni del tipo "questo enunciato", nell'AT è decisamente più complesso. Per questo scopo si rendono utili le due definizioni che seguono.
+\subsubsection{La funzione $Dim_{AT}(m,n)$}
+La funzione $Dim_{AT}(m,n)$ è definita come la relazione aritmetica a due posti che intercorre fra due numeri $m$ ed $n$ se e solo se $m$ è il numero di G\"{o}del di una dimostrazione dell'AT, ed $n$ è il numero di G\"{o}del dell'enunciato di quella dimostrazione. Ciò è anche esprimibile come "$m$ è il g\"{o}deliano di una dimostrazione dell'enunciato g\"{o}deliano $n$ nell'AT". Se questi due numeri rispettano questa condizione, allora formano una \textbf{coppia dimostrativa} (usando la terminologia di Hofstadter \cite{Godel Esher Bach}). Esiste dunque un insieme $D$ di tutte le coppie dimostrative di questa funzione. Si può inoltre dimostrare che per ogni funzione intuitiva (cioè dell'aritmetica tradizionale) esiste una corrispettiva funzione ricorsiva nell'AT che la rappresenta. Questa dimostrazione deriva da (1) la \textbf{tesi di Church} che afferma che le funzioni calcolabili intuitivamente (cioè nell'aritmetica classica) coincidono con funzioni ricorsive in un sistema formale e (2) dal \textbf{V Teorema di G\"{o}del} che afferma che l'AT è \textbf{"abbastanza potente"} (tornerò su questa espressione) da poter esprimere in esso funzioni ricorsive. Ciò chiaramente vale anche per le definizioni che seguono. \'{E} così possibile dare una definizione simbolica di $Dim_{AT}$, ricordando che questa espressione simbolica non fa parte dell'AT ma rappresenta una funzione ricorsiva rappresentabile in esso:
+\begin{align*}
+&<m, n> \in D \rightarrow\ \vdash_{AT} Dim_{AT}(m, n)\\
+&<m, n> \notin D \rightarrow\ \vdash_{AT} \neg Dim_{AT}(m, n)
+\end{align*}
+Questa funzione è stata battezzata "\textit{Dim}" proprio perché essa rappresenta la relazione che intercorre fra una dimostrazione dell'AT e l'enunciato che viene dimostrato. Il simbolo $\vdash$, come in Frege, va interpretato come "dimostrabile" ma non fa parte di questo sistema formale. Si noti che questa funzione è ricorsiva-decidibile, cioè dati due numeri qualsiasi $m$ ed $n$, è sempre possibile stabilire meccanicamente, in un numero finito di passi, se la relazione sussiste fra di essi. 
+\subsubsection{La funzione $Sost(m,n,p)$}
+La funzione $Sost(m,n,p)$ si definisce tale che, se $m$ è il g\"{o}deliano di una formula $\alpha[x]$ dell'AT (una formula qualsiasi), e $n$ è il g\"{o}deliano di una variabile $x$, produce come valore il g\"{o}deliano della formula $\alpha[x/p]$ (ovvero la funzione $\alpha[x]$ con p sostituito alla variabile $x$). Questa operazione può essere interpretata con l'azione intuitiva della sostituzione di un certo termine ad una variabile (ecco spiegato il termine "$Sost$"). Ecco un esempio pratico per chiarire le idee:
+\begin{align*}
+&\alpha[x] = \exists y (y \times 2 = x) &&\text{teorema dell'AT}\\
+&t                                        &&\text{numero di G\"{o}del del teorema}\\
+&31                                       &&\text{numero di G\"{o}del della variabile $x$}\\
+&\alpha[t] = \exists y (y \times 2 = t) &&\text{nuovo teorema dell'AT, con $t$ sostituito ad $x$}\\
+&v                                        &&\text{numero di G\"{o}del del nuovo teorema}
+\end{align*}
+Come si può notare, per applicare la funzione $Sost$ basta conoscere i numeri $t$ e $31$ e il numero $v$ sarà univocamente determinato ($v = Sost(t, 31, t)$). $m$ e $p$ sono uguali perché nel teorema iniziale (che ha per g\"{o}deliano $t$) è stato sostituito ad $x$ lo stesso numero $t$. Il valore $t$ ha così prima la funzione di numero g\"{o}deliano e poi la funzione di numero dell'AT.
+
+\subsubsection{$\gamma$, l'autoreferenza}
+Si consideri la funzione $\gamma(y)$ che contiene la variabile libera $y$, essa è definita come
+\begin{align*}
+(\gamma(y)) \neg \exists x Dim_{AT}(x, Sost(y, 33, y))
+\end{align*}
+Che può essere letta come "Non esiste alcun $x$, tale che $x$ è il g\"{o}deliano di una dimostrazione dell'AT della formula ottenuta dalla sostituzione, nel numero di g\"{o}deliano $y$, di tutte le variabili che hanno come numero di G\"{o}del $33$ (che è il numero di $y$)". Cioè, in breve, afferma che una certa formula, ottenuta attraverso la sostituzione in questione, non è dimostrabile nell'AT. Ancora questa formulazione non individua una precisa funzione perché $y$ funge da pronome (da segnaposto) per un termine qualsiasi. Se a questa variabile si sostituisce proprio il numero di G\"{o}del che deriva dal teorema $\gamma(y)$, che chiamerò numero q, si ottiene il seguente enunciato (che avrà perso la variabile $y$):
+\begin{align*}
+(\gamma)\ \neg \exists x Dim_{AT}(x, Sost(q, 33, q))
+\end{align*}
+Che può essere letto come "non esiste alcun $x$, tale che $x$ è il g\"{o}deliano di una dimostrazione nell'AT, della formula ottenuta dalla sostituzione, nel g\"{o}deliano $q$ (numero di G\"{o}del di $\gamma(y)$), della variabile $y$ (il cui g\"{o}deliano è 33) con $q$ stesso".\\
+Qual' è la formula a cui si riferisce questo enunciato e che non può essere dimostrata? Come forse si era intuito, essa è $\gamma$ stesso. Infatti $\gamma = \gamma(y)[y/q]$ ($\gamma$ è uguale a $\gamma(y)$ con $q$ al posto di $y$). Ecco trovato l'enunciato che si cercava: $\gamma$ infatti "parla di se stesso" mediante la g\"{o}delizzazione e "dice" proprio di non essere dimostrabile all'interno dell'AT. Non è questa però la forma ultima di $\gamma$, utile per la dimostrazione: bisogna ancora fare qualche considerazione.\\
+Il \textbf{Lemma Diagonale} (per cui rimando a Berto \cite{Tutti pazzi per G\"{o}del}, p. 114) sancisce che per ogni enunciato del sistema formale, indicato genericamente con il simbolo $\beta$, esiste una funzione $\alpha[y]$ tale che, sostituendo alla variabile libera il g\"{o}deliano di $\beta$, si ottiene nuovamente l'enunciato $\beta$, che viene detto \textbf{punto fisso}. In formule:
+\begin{align*}
+	&\vdash_{AT} \beta \leftrightarrow \alpha[y/ \ulcorner \beta  \urcorner]
+\end{align*}
+Dove i simboli "$\ulcorner\ \urcorner$" indicano il g\"{o}deliano del simbolo fra essi compreso, in questo caso $\beta$.\\
+Chiaramente questo lemma vale anche per l'enunciato $\gamma$. In questo caso, la funzione $\alpha[y]$ sarà $\neg \exists x Dim_{AT}(x, y)$, nella quale, sostituendo ad $y$ la costante $\ulcorner \gamma  \urcorner$, si ottiene nuovamente $\gamma$.
+\begin{align}\label{eq:gamma2}
+&\vdash_{AT} \gamma \leftrightarrow \neg \exists x Dim_{AT}(x, \ulcorner \gamma  \urcorner) && \text{"$\gamma$ non è dimostrabile"}
+\end{align}
+Questo è, in definitiva, l'enunciato $\gamma$.\\
+Per capire al meglio, con un esempio più pratico, cosa voglia dire che un teorema non è dimostrabile in un sistema formale, consiglio di fare qualche tentativo di dimostrare MU nell'omonimo gioco, genialmente ideato da Hofstadter \cite{Godel Esher Bach}.
+\subsection{La dimostrazione}
+Ecco finalmente la dimostrazione del Teorema di Incompletezza, che corrisponde al Teorema VI dell'articolo originale di G\"{o}del.\\
+Queste le tesi da dimostrare:
+\begin{enumerate}
+\item[\textbf{G1a.}] Se l'AT è coerente, allora $\gamma$ non vi è dimostrabile: $\nvdash_{AT} \neg \gamma$ 
+\item[\textbf{G1b.}] Se l'AT è \textbf{$\omega$-coerente}, allora $\neg \gamma$ non vi è dimostrabile: $\nvdash_{AT} \neg \gamma$
+\end{enumerate}
+
+Prima di tutto però bisogna acquisire alcuni concetti utili per comprendere queste dimostrazioni. 
+\subsubsection{L'$\omega$-coerenza}
+Come detto, la coerenza è la condizione per la quale, all'interno di uno stesso sistema formale, non sono dimostrabili sia $\neg P$ che $P$. Un sistema formale S è invece $\omega$-incoerente se e solo se per qualunque formula $\alpha[x]$ (una formula qualsiasi) del suo linguaggio, $\vdash_s \exists x \alpha[x]$("si può dimostrare che esiste un $x$ per cui vale una certa proprietà $\alpha[x]$"), ma allo stesso tempo, per ogni numero naturale $n$, $\vdash_s \neg \alpha[x/n]$ ("si può dimostrare che quella $x$ non sia il numero 0, nè il numero 1, nè 2, nè 3..."). Se un sistema non è $\omega$-incoerente, allora è $\omega$-coerente, che è un'affermazione più forte della semplice coerenza (tutti i sistemi $\omega$-coerenti sono coerenti ma non vale il contrario).
+\subsubsection{"abbastanza potente" e funzioni ricorsive}
+\'{E} già stato usato, e si userà più volte, l'espressione "abbastanza potente" riferendosi a sistemi come l'AT; è necessario chiarire questo concetto. Un sistema formale viene definito "abbastanza potente" quando è in grado di rappresentare le funzioni primitive della ricorsione, che permettono a loro volta di esprimere le funzioni ricorsive che, come visto nella sezione 11.2.1,  servono a rappresentare nell'AT tutte le funzioni intuitive. I Teoremi di G\"{o}del non sono validi per ogni sistema formale ma solamente per quelli "abbastanza potenti". Per afferrare meglio questo concetto, mi avvalgo della calzante metafora dei grammofoni utilizzata da Hofstadter \cite{Godel Esher Bach}: il signor granchio prova a costruire un grammofono che sia in grado di riprodurre ogni possibile disco con un'affidabilità molto alta, la signora tartaruga puntualmente riesce a costruire un disco che, con le vibrazioni prodotte dal suo suono, riesce a distruggere il grammofono che lo riproduce. Il difetto fatale del grammofono del signor granchio sta nel fatto che è "abbastanza potente" da riprodurre qualsiasi disco, anche quello che ne sancirà la distruzione. Fuori di metafora, il "difetto" fatale dei sistemi come l'AT è che sono "abbastanza potenti" da rappresentare qualsiasi funzione ricorsiva, anche quella ($\gamma$), che li farà cadere nella morsa del Teorema di G\"{o}del.
+\subsubsection{G1a}
+Si supponga che $\gamma$ sia dimostrabile nell'AT ($\vdash_{AT} \gamma$), allora esisterebbe un numero di G\"{o}del $k$ di questa dimostrazione. Anche $\gamma$ ha il suo numero di G\"{o}del, rappresentato da $g$, dunque fra $k$ e $g$ sussisterebbe la relazione $Dim_{AT}$, $<k, g>$: essi sarebbero una coppia dimostrativa dell'AT ed apparterrebbero all'insieme D sopramenzionato. Se così fosse, si potrebbe dimostrare $\vdash_{AT}Dim_{AT}(k, g)$ ma, come detto, g è il g\"{o}deliano di $\gamma$, dunque si avrebbe $\vdash_{AT}Dim_{AT}(k, \ulcorner \gamma \urcorner)$. Per una legge di logica elementare, se questa relazione è verificata per $k$, è possibile scrivere più generalmente che esiste un generico $x$ che soddisfa tale relazione: $\vdash_{AT} \exists x Dim_{AT}(x, \ulcorner \gamma \urcorner)$. Ma, ricordando la \eqref{eq:gamma2}, si nota che questa formula è la negazione di $\gamma$, ciò vuol dire che se si potesse dimostrare $\gamma$ nell'AT, si potrebbe anche dimostrare la sua negazione: questo entra in contraddizione con l'assunto di G1a per cui l'AT è coerente.
+\subsubsection{G1b}
+\begin{itemize}
+\item Si supponga che $\vdash_{AT} \neg \gamma$, ossia che "la negazione di $\gamma$ è dimostrabile nell'AT". Siccome $\gamma$ equivale a $\neg \exists x Dim_{AT}(x, \ulcorner \gamma \urcorner)$, dire che $\neg \gamma$ è dimostrabile è come dire $\neg \neg \exists x Dim_{AT}(x, \ulcorner \gamma \urcorner) = \exists x Dim_{AT}(x, \ulcorner \gamma \urcorner)$, ovvero "$\gamma$ è dimostrabile".
+\item Inoltre, per G1a, $\gamma$ non è dimostrabile nell'AT se l'AT è coerente. Se si accetta la premessa di G1b secondo cui l'AT è $\omega$-coerente, allora l'AT dovrà essere anche coerente, e quindi $\gamma$ non vi sarà dimostrabile. In altre parole, per ogni $n$ dell'AT, $n$ non forma una coppia dimostrativa con $\gamma$ e dunque per ogni numero naturale $n$ vale $\vdash_{AT} \neg Dim_{AT}(n, \ulcorner \gamma \urcorner)$ che , per esteso, è $\vdash_{AT} \neg Dim_{AT}(0, \ulcorner \gamma \urcorner);\ \vdash_{AT} \neg Dim_{AT}(1, \ulcorner \gamma \urcorner);\ \vdash_{AT} \neg Dim_{AT}(2, \ulcorner \gamma \urcorner); ...$ ("non dimostrabile per 0, per 1, per 2, ..."). 
+\end{itemize}
+Se l'AT dimostrasse questi due punti, allora rientrerebbe nei criteri precedentemente espressi di $\omega$-incoerenza. Si asserirebbe infatti che esiste un $n$ che è il g\"{o}deliano di $\gamma$, ma anche che è dimostrabile che $n$ non sia nessuno dei numeri dell' AT. Se viceversa l'AT fosse $\omega$-coerente, per G1b non potrebbe dimostrare $\neg \gamma$. Si giunge dunque alla conclusione che se $\gamma$ è dimostrabile, allora l'AT è $\omega$-incoerente, se invece $\neg \gamma$ è dimostrabile, allora esso non è coerente. L'enunciato $\gamma$ risulta dunque \textbf{indecidibile} nell'AT, cioè non si può dimostrare nè l'enunciato, nè la sua negazione. Il sistema è detto \textbf{incompleto}. Questa è la prova che un sistema formale "abbastanza potente", non può essere contemporaneamente coerente e completo.
+\subsection{Il secondo teorema di Incompletezza: G2}
+Le dimostrazioni svolte fin ora sono state fatte ad un livello superiore rispetto all'AT, i passaggi non sono derivati da una manipolazione meccanica di simboli ma si sono basati su considerazioni sui simboli che si ipotizza si possano formalizzare e dimostrare all'interno dell'AT. Come? G\"{o}del nell'articolo del '31 abbozza una dimostrazione a livello concettuale che però si rivela molto complessa per varie sottigliezze al livello del linguaggio. Di seguito è delineata questa ulteriore dimostrazione, che altro non è che un corollario del Primo Teorema. Da questo si ricava che
+\begin{enumerate}
+\item[\textbf{G1a}] Se l'AT è coerente, allora $\gamma$ non vi è dimostrabile.
+\end{enumerate}
+Per esprimerla nell'AT bisogna innanzitutto trovare una formula per esprimere la nozione di coerenza. Sia $Coer_{AT}$ questa formula, si definisce come
+\begin{align*}
+&Coer_{AT} = \neg \exists x Dim{AT}(x, \ulcorner 1 = 0 \urcorner)
+\end{align*}
+Che vuol dire che la condizione di coerenza è che non si possa dimostrare entro l'AT $1 = 0$. Questo sembra scontato ma, in virtù del teorema del \textit{Pseudo-Scoto}, se un sistema è incoerente allora ogni cosa è dimostrabile, e quindi anche $1 = 0$. Ora, rappresentare G1a risulta banale: 
+
+\begin{align} \label{eq:coer}
+&Coer_{AT} \rightarrow \neg \exists x Dim{AT}(x, \ulcorner \gamma \urcorner)
+\end{align}
+
+Ma questa condizione equivale alla stessa $\gamma$. Dunque
+\begin{align*}
+Coer_{AT} \rightarrow \gamma
+\end{align*}
+Si può ora enunciare il Secondo Teorema di Incompletezza:
+\begin{enumerate}
+\item[\textbf{G2.}] Se l'AT è coerente, allora $Coer_{AT}$ non vi è dimostrabile: $\nvdash_{AT} Coer{AT}$
+\end{enumerate}
+Ossia: se l'AT è coerente, non si può dimostrare $Coer_{AT}$, che rappresenta formalmente, la coerenza dell'AT. Ora il problema si sposta nella dimostrazione che la \eqref{eq:coer} faccia parte dell'AT, G\"{o}del non lo dimostrò mai, ma congetturò che si potesse fare. 
+
+\section{Conclusione}
+Agli inizi dell ventesimo secolo, a seguito di un insieme di eventi incredibilmente ravvicinati e apparentemente correlati in discipline molto distanti fra loro, si determina una crisi che porta ad interrogarsi sull'essenza stessa della realtà. In ambito logico, come visto, la forte e precisa concettualizzazione data dai sistemi simbolici porta questa disciplina a risultati straordinari, fomentando la speranza, quasi metafisica, di raggiungere una "completezza" nella descrizione dei meccanismi logici umani. Tuttavia con i teoremi di G\"{o}del, dei quali vorrei evidenziare l'enorme portata, si sancisce l'impossibilità di creare sistemi formali tanto comprensivi, contemporaneamente completi e senza contraddizioni, sfatando definitivamente questa speranza. Si legittima così una grande varietà di interpretazioni filosofiche.\\
+Dal mio punto di vista, questa parabola mette in luce un'inaspettata complessità della realtà e ribadisce con una fermezza senza precedenti, data dall'autorevolezza dei procedimenti (meta)matematici, l'impossibilità per l'uomo di ottenere risultati assoluti, dovuta alla sua incontrovertibile finitezza e limitatezza.
+\begin{quote}
+\textit{Su ciò di cui non si può parlare si deve tacere.}
+\end{quote}
+\begin{flushright}
+\vspace{-5mm} Ludwig Wittgenstein
+\end{flushright}
+
+\begin{thebibliography}{99}
+	\bibitem{Maracchia} Silvio Maracchia, \emph{Breve storia della logica antica}, Simmetria edizioni, Roma, 2014.
+	
+	\bibitem{Geymonat} Ludovico Geymonat, \emph{Storia del pensiero filosofico e scientifico}, Garzanti, Milano, 1972.
+	
+	\bibitem{Boole} George Boole, \emph{L'analisi logica della matematica}, Bollati Boringhieri, Torino, 1993.
+	
+	\bibitem{Frege} Anthony Kenny, \emph{Frege}, Einaudi, Torino, 2003.
+	
+	\bibitem{Godel Esher Bach} Douglas Hofstadter, \emph{G\"{o}del, Esher, Bach. Un'eterna ghirlanda brillante}, Adelphi, Milano, 1984.
+	
+	\bibitem{Tutti pazzi per G\"{o}del} Francesco Berto, \emph{Tutti pazzi per G\"{o}del! La guida completa al teorema dell'incompletezza.}, Laterza, Bari, 2009.
+\end{thebibliography}
+\newpage
+\tableofcontents
+\end{document}
